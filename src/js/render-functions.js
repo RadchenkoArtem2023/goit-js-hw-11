@@ -4,6 +4,9 @@ import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 
 const galleryList = document.querySelector('.gallery');
+const lightbox = new SimpleLightbox('.gallery a', {
+  captionsData: 'alt',
+});
 
 export function renderImages(data) {
   if (data.length == 0) {
@@ -34,10 +37,6 @@ export function renderImages(data) {
 
     galleryList.insertAdjacentHTML('beforeend', galleryMarkup);
 
-    const lightbox = new SimpleLightbox('.gallery a', {
-      captionsData: 'alt',
-    });
-
-    lightbox.refresh();
+    lightbox.refresh(); // Refresh the lightbox after adding new images
   }
 }

@@ -1,7 +1,5 @@
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
-import SimpleLightbox from 'simplelightbox';
-import 'simplelightbox/dist/simple-lightbox.min.css';
 import { fetchImages } from './js/pixabay-api.js';
 import { renderImages } from './js/render-functions.js';
 
@@ -37,7 +35,7 @@ function handleFormSubmit(event) {
   showLoader();
 
   fetchImages(query)
-    .then(data => renderImages(data.hits))
+    .then(data => renderImages(data))
     .catch(error => {
       console.log(error);
       showMessage(
@@ -47,13 +45,7 @@ function handleFormSubmit(event) {
     })
     .finally(() => hideLoader());
 
-  galleryList.innerHTML = '';
-}
-
-function handleInput(event) {
-  event.preventDefault();
-  input.value = event.target.value.trim();
+  galleryList.innerHTML = ''; // Clear the gallery before loading new images
 }
 
 form.addEventListener('submit', handleFormSubmit);
-input.addEventListener('input', handleInput);
